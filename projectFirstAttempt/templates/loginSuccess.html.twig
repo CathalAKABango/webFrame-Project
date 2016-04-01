@@ -1,0 +1,14 @@
+{% extends '_base.html.twig' %}
+
+{# ----------------------------------------#}
+{% block title %}
+    Success
+{% endblock %}
+
+{# ----------------------------------------#}
+{% block indexNavStyle %}current_page{% endblock %}
+
+{# ----------------------------------------#}
+{% block main %}
+    well done <?= $username ?>, you have sucessfully logged in to the system.
+{% endblock %}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Martial Arts Club {% block title %}{% endblock %}</title>
+    <style>
+        @import "css/style.css";
+        @import "css/nav.css";
+    </style>
+</head>
+<body>
+<section>
+    <?php
+	if($isLoggedIn):
+	?>
+    you are logged in as: <strong><?= $username ?></strong>
+
+</section>
+
+
+<nav>
+    <ul>
+        <li>
+            <a href="index" class="{% block indexNavStyle %}{% endblock %}">Home page</a>
+        </li>
+        <li>
+            <a href="members" class="{% block aboutNavStyle %}{% endblock %}">Member Login</a>
+        </li>
+        <li>
+            <a href="days" class="{% block daysNavStyle %}{% endblock %}">Days</a>
+        </li>
+    </ul>
+</nav>
+
+
+{% block main %}
+{% endblock %}
+
+<footer>
+    2016 Cathal Moore WebFrameWork Project
+</footer>
+</body>
+</html>
