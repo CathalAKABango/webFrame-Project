@@ -23,31 +23,31 @@ class MimeTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testGuessImageWithoutExtension()
     {
-        $this->assertEquals('image/gif', MimeTypeGuesser::getInstance()->guess(__DIR__ . '/../Fixtures/test'));
+        $this->assertEquals('image/gif', MimeTypeGuesser::getInstance()->guess(__DIR__.'/../Fixtures/test'));
     }
 
     public function testGuessImageWithDirectory()
     {
         $this->setExpectedException('Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException');
 
-        MimeTypeGuesser::getInstance()->guess(__DIR__ . '/../Fixtures/directory');
+        MimeTypeGuesser::getInstance()->guess(__DIR__.'/../Fixtures/directory');
     }
 
     public function testGuessImageWithFileBinaryMimeTypeGuesser()
     {
         $guesser = MimeTypeGuesser::getInstance();
         $guesser->register(new FileBinaryMimeTypeGuesser());
-        $this->assertEquals('image/gif', MimeTypeGuesser::getInstance()->guess(__DIR__ . '/../Fixtures/test'));
+        $this->assertEquals('image/gif', MimeTypeGuesser::getInstance()->guess(__DIR__.'/../Fixtures/test'));
     }
 
     public function testGuessImageWithKnownExtension()
     {
-        $this->assertEquals('image/gif', MimeTypeGuesser::getInstance()->guess(__DIR__ . '/../Fixtures/test.gif'));
+        $this->assertEquals('image/gif', MimeTypeGuesser::getInstance()->guess(__DIR__.'/../Fixtures/test.gif'));
     }
 
     public function testGuessFileWithUnknownExtension()
     {
-        $this->assertEquals('application/octet-stream', MimeTypeGuesser::getInstance()->guess(__DIR__ . '/../Fixtures/.unknownextension'));
+        $this->assertEquals('application/octet-stream', MimeTypeGuesser::getInstance()->guess(__DIR__.'/../Fixtures/.unknownextension'));
     }
 
     public function testGuessWithIncorrectPath()

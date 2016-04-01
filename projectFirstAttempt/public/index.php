@@ -5,10 +5,7 @@ use Itb\MainController;
 // ------------
 require_once __DIR__ . '/../app/setup.php';
 
-define('DB_HOST','localhost');
-define('DB_USER', 'fred');
-define('DB_PASS', 'smith');
-define('DB_NAME', 'itb');
+
 
 
 // use our static controller() method...

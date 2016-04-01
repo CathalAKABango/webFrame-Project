@@ -104,9 +104,9 @@ class RouteCollectionTest extends \PHPUnit_Framework_TestCase
     public function testAddCollectionWithResources()
     {
         $collection = new RouteCollection();
-        $collection->addResource($foo = new FileResource(__DIR__ . '/Fixtures/foo.xml'));
+        $collection->addResource($foo = new FileResource(__DIR__.'/Fixtures/foo.xml'));
         $collection1 = new RouteCollection();
-        $collection1->addResource($foo1 = new FileResource(__DIR__ . '/Fixtures/foo1.xml'));
+        $collection1->addResource($foo1 = new FileResource(__DIR__.'/Fixtures/foo1.xml'));
         $collection->addCollection($collection1);
         $this->assertEquals(array($foo, $foo1), $collection->getResources(), '->addCollection() merges resources');
     }
@@ -175,9 +175,9 @@ class RouteCollectionTest extends \PHPUnit_Framework_TestCase
     public function testResource()
     {
         $collection = new RouteCollection();
-        $collection->addResource($foo = new FileResource(__DIR__ . '/Fixtures/foo.xml'));
+        $collection->addResource($foo = new FileResource(__DIR__.'/Fixtures/foo.xml'));
         $collection->addResource($bar = new FileResource(__DIR__.'/Fixtures/bar.xml'));
-        $collection->addResource(new FileResource(__DIR__ . '/Fixtures/foo.xml'));
+        $collection->addResource(new FileResource(__DIR__.'/Fixtures/foo.xml'));
 
         $this->assertEquals(array($foo, $bar), $collection->getResources(),
             '->addResource() adds a resource and getResources() only returns unique ones by comparing the string representation');

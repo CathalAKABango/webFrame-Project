@@ -69,7 +69,7 @@ class ClassNotFoundFatalErrorHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function provideClassNotFoundData()
     {
-        $prefixes = array('Symfony\Component\Debug\Exception\\' => realpath(__DIR__ . '/../../Exception'));
+        $prefixes = array('Symfony\Component\Debug\Exception\\' => realpath(__DIR__.'/../../Exception'));
 
         $symfonyAutoloader = new SymfonyClassLoader();
         $symfonyAutoloader->addPrefixes($prefixes);
@@ -157,11 +157,11 @@ class ClassNotFoundFatalErrorHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testCannotRedeclareClass()
     {
-        if (!file_exists(__DIR__ . '/../FIXTURES2/RequiredTwice.php')) {
+        if (!file_exists(__DIR__.'/../FIXTURES2/REQUIREDTWICE.PHP')) {
             $this->markTestSkipped('Can only be run on case insensitive filesystems');
         }
 
-        require_once __DIR__ . '/../FIXTURES2/RequiredTwice.php';
+        require_once __DIR__.'/../FIXTURES2/REQUIREDTWICE.PHP';
 
         $error = array(
             'type' => 1,

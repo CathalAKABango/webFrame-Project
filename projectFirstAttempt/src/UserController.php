@@ -23,10 +23,15 @@ class UserController
         // authenticate!
         if ('user' === $username && 'user' === $password) {
             // store username in 'user' in 'session'
-            $app['session']->set('user', array('username' => $username) );
+            $app['session']->set('user', array('user' => $username) );
+            //echo "<p>you are logged in as ".$username."</p>";
 
+            $templateName = 'loginSuccess';
+            $argsArray = array(
+                'username' => $username
+            );
             // success - redirect to the secure admin home page
-            return $app->redirect('admin');
+            return $app['twig']->render($templateName . '.html.twig', $argsArray);
         }
 
         // login page with error message

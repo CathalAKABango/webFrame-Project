@@ -136,7 +136,7 @@ class DebugClassLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testFileCaseMismatch()
     {
-        if (!file_exists(__DIR__ . '/Fixtures/casemismatch.php')) {
+        if (!file_exists(__DIR__.'/Fixtures/CaseMismatch.php')) {
             $this->markTestSkipped('Can only be run on case insensitive filesystems');
         }
 
@@ -278,12 +278,12 @@ class ClassLoader
 
     public function getClassMap()
     {
-        return array(__NAMESPACE__.'\Fixtures\NotPSR0bis' => __DIR__ . '/Fixtures/notPsr0Bis.php');
+        return array(__NAMESPACE__.'\Fixtures\NotPSR0bis' => __DIR__.'/Fixtures/notPsr0Bis.php');
     }
 
     public function findFile($class)
     {
-        $fixtureDir = __DIR__ . DIRECTORY_SEPARATOR .DIRECTORY_SEPARATOR;
+        $fixtureDir = __DIR__.DIRECTORY_SEPARATOR.'Fixtures'.DIRECTORY_SEPARATOR;
 
         if (__NAMESPACE__.'\TestingUnsilencing' === $class) {
             eval('-- parse error --');

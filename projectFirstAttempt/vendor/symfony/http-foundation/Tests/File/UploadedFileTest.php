@@ -36,7 +36,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testFileUploadsWithNoMimeType()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             null,
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -53,7 +53,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testFileUploadsWithUnknownMimeType()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/.unknownextension',
+            __DIR__.'/Fixtures/.unknownextension',
             'original.gif',
             null,
             filesize(__DIR__.'/Fixtures/.unknownextension'),
@@ -66,7 +66,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testGuessClientExtension()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             'image/gif',
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -79,7 +79,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testGuessClientExtensionWithIncorrectMimeType()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             'image/jpeg',
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -92,7 +92,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testErrorIsOkByDefault()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             'image/gif',
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -105,7 +105,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testGetClientOriginalName()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             'image/gif',
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -118,7 +118,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testGetClientOriginalExtension()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             'image/gif',
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -134,24 +134,24 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testMoveLocalFileIsNotAllowed()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             'image/gif',
             filesize(__DIR__.'/Fixtures/test.gif'),
             UPLOAD_ERR_OK
         );
 
-        $movedFile = $file->move(__DIR__ . '/Fixtures/directory');
+        $movedFile = $file->move(__DIR__.'/Fixtures/directory');
     }
 
     public function testMoveLocalFileIsAllowedInTestMode()
     {
         $path = __DIR__.'/Fixtures/test.copy.gif';
-        $targetDir = __DIR__ . '/Fixtures/directory';
+        $targetDir = __DIR__.'/Fixtures/directory';
         $targetPath = $targetDir.'/test.copy.gif';
         @unlink($path);
         @unlink($targetPath);
-        copy(__DIR__ . '/Fixtures/test.gif', $path);
+        copy(__DIR__.'/Fixtures/test.gif', $path);
 
         $file = new UploadedFile(
             $path,
@@ -162,10 +162,10 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
             true
         );
 
-        $movedFile = $file->move(__DIR__ . '/Fixtures/directory');
+        $movedFile = $file->move(__DIR__.'/Fixtures/directory');
 
-        $this->assertTrue(file_exists($targetPath));
-        $this->assertFalse(file_exists($path));
+        $this->assertFileExists($targetPath);
+        $this->assertFileNotExists($path);
         $this->assertEquals(realpath($targetPath), $movedFile->getRealPath());
 
         @unlink($targetPath);
@@ -174,7 +174,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testGetClientOriginalNameSanitizeFilename()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             '../../original.gif',
             'image/gif',
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -187,28 +187,28 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testGetSize()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             'image/gif',
             filesize(__DIR__.'/Fixtures/test.gif'),
             null
         );
 
-        $this->assertEquals(filesize(__DIR__ . '/Fixtures/test.gif'), $file->getSize());
+        $this->assertEquals(filesize(__DIR__.'/Fixtures/test.gif'), $file->getSize());
 
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test',
+            __DIR__.'/Fixtures/test',
             'original.gif',
             'image/gif'
         );
 
-        $this->assertEquals(filesize(__DIR__ . '/Fixtures/test'), $file->getSize());
+        $this->assertEquals(filesize(__DIR__.'/Fixtures/test'), $file->getSize());
     }
 
     public function testGetExtension()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             null
         );
@@ -219,7 +219,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testIsValid()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             null,
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -236,7 +236,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testIsInvalidOnUploadError($error)
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             null,
             filesize(__DIR__.'/Fixtures/test.gif'),
@@ -260,7 +260,7 @@ class UploadedFileTest extends \PHPUnit_Framework_TestCase
     public function testIsInvalidIfNotHttpUpload()
     {
         $file = new UploadedFile(
-            __DIR__ . '/Fixtures/test.gif',
+            __DIR__.'/Fixtures/test.gif',
             'original.gif',
             null,
             filesize(__DIR__.'/Fixtures/test.gif'),
