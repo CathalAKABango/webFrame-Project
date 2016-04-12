@@ -9,24 +9,15 @@ class MainController
     /**
      * render the days page template
      */
-    public function daysAction(Request $request, Application $app)
+    public function classesAction(Request $request, Application $app)
     {
-        $days = array(
-            'Classes',
-            'Classes',
-            'Classes',
-            'Classes',
-            'Classes',
-            'Classes',
-            'Classes'
-        );
+
 
 
         $argsArray = [
-            'days' => $days,
         ];
 
-        $templateName = 'days';
+        $templateName = 'classes';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 
@@ -51,6 +42,18 @@ class MainController
 
 
         $templateName = 'index';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+    public function listAction(Request $request, Application $app)
+    {
+        $studentRepository = new StudentRepository();
+        $students = $studentRepository->getAll();
+
+        $argsArray = [
+            'students' => $students,
+        ];
+
+        $templateName = 'list';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 }

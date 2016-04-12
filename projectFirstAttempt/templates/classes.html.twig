@@ -1,0 +1,40 @@
+{% extends '_base.html.twig' %}
+
+{# ----------------------------------------#}
+{% block title %}
+    Class List
+{% endblock %}
+
+{# ----------------------------------------#}
+{% block indexNavStyle %}current_page{% endblock %}
+
+{# ----------------------------------------#}
+{% block main %}
+<table>
+    <tr>
+        <th> Day </th>
+        <th> Time </th>
+        <th> Grades </th>
+        <th> Location </th>
+    </tr>
+    <tr>
+        <td rowspan="2"><b>Tuesday class</b> <br>Technical <br>Patterns <br>2 and 3 step</td>
+        <td>19:00 to 20:00</td>
+        <td>White to Blue Belt</td>
+        <td rowspan="8">Gaelscoil Ui Fhiaich,<br> Celbridge Road,<br> Maynooth</td>
+        </tr>
+    <tr>
+        <td>19:00 to 20:00</td>
+        <td>Blue belt and above</td>
+    </tr>
+    <tr>
+        <td rowspan="2"><b>Tuesday class</b> <br>Technical <br>Patterns <br>2 and 3 step</td>
+        <td>19:00 to 20:00</td>
+        <td>White to Blue Belt</td>
+    </tr>
+    <tr>
+        <td>19:00 to 20:00</td>
+        <td>Blue belt and above</td>
+    </tr>
+</table>
+{% endblock %}
