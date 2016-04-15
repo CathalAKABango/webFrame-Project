@@ -10,7 +10,11 @@
 {% block main %}
 
 <!-- start table for displaying DVD details -->
-<h2>Contents of database</h2>
+<h2>welcome to the admin page</h2>
+
+    <p>
+        be careful of your actions in this page
+    </p>
 
 <table>
     <tr>
@@ -20,6 +24,7 @@
         <th> Current Grade </th>
         <th> Password </th>
         <th> Date Joined </th>
+        <th> Edit user </th>
 
     </tr>
 
@@ -29,14 +34,15 @@
     // 	      .5   1    2    3    4    5     stars
 -->
 
-{% for dvd in dvds %}
+{% for student in students %}
     <tr>
-        <td>{{ dvd.id }}</td>
-        <td>{{ dvd.title }}</td>
-        <td>{{ dvd.category }}</td>
-        <td>{{ dvd.price }}</td>
-        <td>{{ dvd.voteAverage }}</td>
-        <td>{{ dvd.numVotes }}</td>
+        <td>{{ student.id }}</td>
+        <td>{{ student.username }}</td>
+        <td>{{ student.lastGrade }}</td>
+        <td>{{ student.currentGrade }}</td>
+        <td>{{ student.password }}</td>
+        <td>{{ student.dateJoined }}</td>
+        <td></td>
 
 
 
@@ -44,5 +50,9 @@
 {% endfor %}
 
 </table>
+
+    <p>
+        TO add a new student to the system please click the link <a href="addUser">Add Student</a>
+    </p>
 
 {% endblock %}

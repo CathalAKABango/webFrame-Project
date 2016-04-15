@@ -12,38 +12,37 @@ class StudentRepository extends DatabaseManager
         $db = new DatabaseManager();
         $connection = $db->getDbh();
 
-        $statement = $connection->prepare('SELECT * from student');
+        $statement = $connection->prepare('SELECT * from students');
         $statement->setFetchMode(\PDO::FETCH_CLASS, '\\Itb\\Student');
         $statement->execute();
-
-        /*
-        $dvds = [];
-        while ($dvd = $statement->fetch()) {
-
-            $outputAsString = true;
-            $message = print_r($dvd, $outputAsString);
-            $log->addDebug($message);
-
-            print '<pre>';
-            print_r($dvd);
-
-            // append Dvd object to end of our array
-            $dvds[] = $dvd;
-        }
-        */
-
-        $student = $statement->fetchAll();
+                $student = $statement->fetchAll();
 
         return $student;
     }
 
-    public function getOneById($id)
+    public function getOneByUsername($username)
     {
         $db = new DatabaseManager();
         $connection = $db->getDbh();
 
-        $statement = $connection->prepare('SELECT * from student WHERE id=:id');
-        $statement->bindParam(':id', $id);
+        $statement = $connection->prepare('SELECT * from students WHERE username=:username');
+        $statement->bindParam(':username', $username);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, '\\Itb\\Student');
+        $statement->execute();
+
+        if ($student = $statement->fetch()) {
+            return $student;
+        } else {
+            return null;
+        }
+    }
+    public function getPassword($password)
+    {
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+        $statement = $connection->prepare('SELECT * from student WHERE password=:password');
+        $statement->bindParam(':password', $password);
         $statement->setFetchMode(\PDO::FETCH_CLASS, '\\Itb\\Student');
         $statement->execute();
 

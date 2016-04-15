@@ -2,15 +2,7 @@
 namespace Itb;
 use Mattsmithdev\PdoCrud\DatabaseTable;
 
-/**
- * Created by PhpStorm.
- * User: matt
- * Date: 26/01/2016
- * Time: 10:44
- *
- * represent DVD objects for use in voting system
- *
- */
+
 class Student extends DatabaseTable
 {
     /**
@@ -55,71 +47,43 @@ class Student extends DatabaseTable
     {
         return $this->id;
     }
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
 
-    public function getTitle()
+
+    public function getUsername()
     {
         return $this->username;
     }
 
-    public function getCategory()
+    public function setLastGrade($lastGrade)
+    {
+        $this->lastGrade = $lastGrade;
+    }
+
+    public function getLastGrade()
     {
         return $this->lastGrade;
     }
 
-    public function getPrice()
+    public function getCurrentGrade()
     {
         return $this->currentGrade;
     }
 
-    public function getVoteAverage()
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function getNumVotes()
+    public function setDateJoined($dateJoined)
+    {
+        $this->dateJoined = $dateJoined;
+    }
+    public function getDateJoined()
     {
         return $this->dateJoined;
     }
-
-
-//    /**
-//     * function will exit with first return
-//     * so conditions ordered strongest test first, down to weakest test ...
-//     *
-//     * @return string
-//     */
-//    public function getStarImageHTML()
-//    {
-//        $message = 'num votes = ' . $this->numVotes;
-//        die($message);
-//
-//        if ($this->numVotes < 1){
-//            return '(no votes yet)';
-//        }
-//
-//        if ($this->voteAverage > 80){
-//            return  '<img src="images/stars5.png" alt="five starts star">';
-//        }
-//
-//        if ($this->voteAverage > 60){
-//            return  '<img src="images/stars4.png" alt="four star">';
-//        }
-//
-//        if ($this->voteAverage > 45){
-//            return  '<img src="images/stars3.png" alt="three star">';
-//        }
-//
-//        if ($this->voteAverage > 25){
-//            return  '<img src="images/stars2.png" alt="two star">';
-//        }
-//
-//        if ($this->voteAverage > 10){
-//            return  '<img src="images/stars1.png" alt="one star">';
-//        }
-//
-//        // if get here, just give half a star
-//        return  '<img src="images/starsHalf.png" alt="half star">';
-//
-//    }
-
 }

@@ -1,0 +1,46 @@
+{% extends '_base.html.twig' %}
+
+{# ------------------------------------------------- #}
+{% block pageTitle %}Add User{% endblock %}
+
+{# ------------------------------------------------- #}
+{% block main %}
+
+    <h1>
+        Add A New Member
+    </h1>
+
+
+        <form
+                method="post"
+                action="?action=processMessageUpdateForm"
+        >
+
+            <table>
+                <tr>
+                    <th> ID </th>
+                    <th> Name </th>
+                    <th> Last Grade </th>
+                    <th> Date Joined </th>
+
+                </tr>
+                {% for student in students %}
+
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.username }}</td>
+                        <td>{{ student.lastGrade }}</td>
+                        <td>{{ student.dateJoined }}</td>
+                        <td></td>
+
+
+
+                    </tr>
+                {% endfor %}
+
+
+            </table>
+        </form>
+
+
+{% endblock %}

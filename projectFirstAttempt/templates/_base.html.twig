@@ -11,12 +11,12 @@
 <body>
 <section>
     {% block head %}
-    {% if username %}
-    <p>
-        <h3>You are logged in as:
-        {{ username }}</h3>
-    </p>
-    {% endif %}
+    {#{% if username %}#}
+    {#<p>#}
+        {#<h3>You are logged in as:#}
+        {#{{ username }}</h3>#}
+    {#</p>#}
+    {#{% endif %}#}
 
     {% endblock %}
 
@@ -36,7 +36,7 @@
             <a href="classes" class="{% block daysNavStyle %}{% endblock %}">Weekly Classes</a>
         </li>
         <li>
-            <a href="list" class="{% block listLinkStyle %}{% endblock %}">Database</a>
+            <a href="admin" class="{% block listLinkStyle %}{% endblock %}">Admin</a>
         </li>
     </ul>
 </nav>
