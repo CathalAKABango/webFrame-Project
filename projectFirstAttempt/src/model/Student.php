@@ -1,5 +1,5 @@
 <?php
-namespace Itb;
+namespace Itb\Model;
 use Mattsmithdev\PdoCrud\DatabaseTable;
 
 

@@ -1,5 +1,7 @@
 <?php
-namespace Itb;
+namespace Itb\Controller;
+
+use Itb\Model\Student;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;

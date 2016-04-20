@@ -29,12 +29,6 @@
 
     </tr>
 
-    <!-- ********************* HTML for dvd items ****************** -->
-<!--
-    //   	0 - 15 - 40 - 55 - 70 - 85 - 100 %age
-    // 	      .5   1    2    3    4    5     stars
--->
-
 {% for student in students %}
     <tr>
         <td> {{ student.id }}</td>
@@ -43,23 +37,13 @@
         <td>{{ student.currentGrade }}</td>
 
         <td>{{ student.dateJoined }}</td>
-        <td><a href="/updateUser"><input type="button" value="Update"></a> </td>
-        <td><a href="/deleteUser/{{ student.id }}"><input type="button" method="post" value="Delete"></a></td>
         <td>
-            <form action="/deleteUser/{{ student.id }}" method="post">
-
-	<input type="submit" value="DELETE">
-            </form>
+            <a href="/updateUser/{{ student.id }}"><input type="button" value="UPDATE"></a>
         </td>
 
-
-        {#<form action="createNewModule" method="post">#}
-            {#<input type="submit" value="Create new module">#}
-
-        {#<td><a href="/deleteUser"><input type="button" value="Delete"></a> </td>#}
-
-
-
+        <td>
+            <form action="/deleteUser/{{ student.id }}" method="post"><input type="submit" value="DELETE"></form>
+        </td>
     </tr>
 {% endfor %}
 

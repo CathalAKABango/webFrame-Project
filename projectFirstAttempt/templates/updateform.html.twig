@@ -1,0 +1,38 @@
+{% extends '_base.html.twig' %}
+
+{% block main %}
+
+    <h1>New Student Form</h1>
+
+
+    <form action="/updateStudent/{{ student.id }}" method="post">
+
+        <h1>Update Student {{ student.id }} </h1>
+
+
+
+        <h2>Username</h2>
+        <p><input type="text" name="username" placeholder="{{ student.userName }}"></p>
+        <h2>Password</h2>
+        <p>
+            <input type="text" name="password" placeholder="{{ student.password }}">
+        </p>
+        <h2>last Grade</h2>
+        <p>
+            <input type="text" name="lastGrade" placeholder="{{ student.lastGrade }}">
+        </p>
+        <h2>Current Grade</h2>
+        <p>
+            <input type="text" name="currentGrade" placeholder="{{ student.currentGrade }}">
+        </p>
+        <h2>Date Joined</h2>
+        <p>
+            <input type="date" name="dateJoined" placeholder="{{ student.dateJoined }}">
+        </p>
+
+        <input type="submit" value="Update">
+    </form>
+
+
+
+{% endblock %}

@@ -6,7 +6,7 @@
  * Time: 09:20
  */
 
-namespace Itb;
+namespace Itb\Controller;
 
 use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
