@@ -1,0 +1,23 @@
+{% extends '_base.html.twig' %}
+
+{% block main %}
+
+    <h1>New Student Form</h1>
+
+    <form action="createNewModule" method="post">
+    <h1>Create New Module</h1>
+    <h2>Username</h2>
+    <p><input type="text" name="username"></p>
+    <h2>Last Grade Achieved</h2>
+    <p><input type="text" name="lastgrade"></p>
+    <h2>Password</h2>
+    <p><input type="password" name="password"></p>
+    <h2>Date joined</h2>
+    <p><input type="date" name="date"></p>
+    <h2>Current Grade working on</h2>
+    <p><input type="text" name="currentgrade"></p>
+    <input type="submit" value="Create new module">
+    </form>
+
+
+{% endblock %}

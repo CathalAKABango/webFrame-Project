@@ -22,9 +22,10 @@
         <th> Name </th>
         <th> Last Grade </th>
         <th> Current Grade </th>
-        <th> Password </th>
         <th> Date Joined </th>
-        <th> Edit user </th>
+        <th> Update User</th>
+        <th> Delete User</th>
+
 
     </tr>
 
@@ -36,13 +37,26 @@
 
 {% for student in students %}
     <tr>
-        <td>{{ student.id }}</td>
+        <td> {{ student.id }}</td>
         <td>{{ student.username }}</td>
         <td>{{ student.lastGrade }}</td>
         <td>{{ student.currentGrade }}</td>
-        <td>{{ student.password }}</td>
+
         <td>{{ student.dateJoined }}</td>
-        <td></td>
+        <td><a href="/updateUser"><input type="button" value="Update"></a> </td>
+        <td><a href="/deleteUser/{{ student.id }}"><input type="button" method="post" value="Delete"></a></td>
+        <td>
+            <form action="/deleteUser/{{ student.id }}" method="post">
+
+	<input type="submit" value="DELETE">
+            </form>
+        </td>
+
+
+        {#<form action="createNewModule" method="post">#}
+            {#<input type="submit" value="Create new module">#}
+
+        {#<td><a href="/deleteUser"><input type="button" value="Delete"></a> </td>#}
 
 
 
@@ -52,7 +66,7 @@
 </table>
 
     <p>
-        TO add a new student to the system please click the link <a href="addUser">Add Student</a>
+        TO add a new student to the system please click the link <a href="/addUser"><input type="button" value="Add User"></a>
     </p>
 
 {% endblock %}

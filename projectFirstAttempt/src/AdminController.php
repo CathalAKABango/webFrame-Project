@@ -24,59 +24,66 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AdminController
 {
-    public function isAuthenticated()
+
+
+    public function deleteUserAction(Request $request, Application $app, $id)
     {
 
-    }
+        $student = Student::delete($id);
 
-    // action for route:    /admin
-    // will we allow access to the Admin home?
-    public function indexAction(Request $request, Application $app)
-    {
-        // test if 'username' stored in session ...
-        $username = getAuthenticatedUserName($app);
+        $argsArray = [
+            'message' => 'sorry, no book could be found with isbn = ' . $id
+        ];
+        $templateName = '404';
 
-        // check we are authenticated --------
-        $isAuthenticated = (null != $username);
-        if(!$isAuthenticated){
-            // not authenticated, so redirect to LOGIN page
-            return $app->redirect('login');
+        // if book WAS found, then show it
+        if (null != $student){
+            $argsArray = [
+                'student' => $student
+            ];
+
+            $templateName = 'registrationSuccsess';
         }
 
-        // store username into args array
-        $argsArray = array(
-            'username' => $username
-        );
-
-        // render (draw) template
-        // ------------
-        $templateName = 'admin/index';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
-
-    // action for route:    /adminCodes
-    // will we allow access to the Admin home?
-    public function codesAction(Request $request, Application $app)
+    public function addUserAction(Request $request, Application $app)
     {
-        // test if 'username' stored in session ...
-        $username = getAuthenticatedUserName($app);
-
-        // check we are authenticated --------
-        $isAuthenticated = (null != $username);
-        if(!$isAuthenticated){
-            // not authenticated, so redirect to LOGIN page
-            return $app->redirect('login');
+        {
+            $templateName = 'newStudentForm';
+            return $app['twig']->render($templateName . '.html.twig', []);
         }
 
-        // store username into args array
-        $argsArray = array(
-            'username' => $username
-        );
-
-        // render (draw) template
-        // ------------
-        $templateName = 'admin/codes';
-        return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
+    public function createNewStudentAction(Request $request, Application $app)
+    {
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+        $lastgrade = filter_input(INPUT_POST, 'lastgrade', FILTER_SANITIZE_STRING);
+        $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $currentgrade = filter_input(INPUT_POST, 'currentgrade', FILTER_SANITIZE_STRING);
+
+        $student= new Student();
+        $student->setUsername($username);
+        $student->setLastGrade($lastgrade);
+        $student->setDateJoined($date);
+        $student->setCurrentGrade($currentgrade);
+        $student->setPassword($password);
+        $insertSuccess = Student::insert($student);
+
+        if($insertSuccess){
+            $templateName = 'registrationSuccsess';
+            return $app['twig']->render($templateName . '.html.twig', []);
+        } else {
+            //$message = 'error - not able to CREATE item ';
+            //$message .= '<pre>';
+            // capture print_r output as a string
+            // $message .= print_r($student, true);
+            $templateName = 'members';
+            return $app['twig']->render($templateName . '.html.twig', []);
+
+        }
+    }
+
 
 }

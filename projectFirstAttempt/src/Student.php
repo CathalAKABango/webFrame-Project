@@ -72,10 +72,19 @@ class Student extends DatabaseTable
     {
         return $this->currentGrade;
     }
+    public function setCurrentGrade($currentGrade)
+    {
+        $this->currentGrade = $currentGrade;
+    }
 
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 
     public function setDateJoined($dateJoined)
