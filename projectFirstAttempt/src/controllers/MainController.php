@@ -1,15 +1,24 @@
 <?php
+/**
+ * class for the main controlls of the site
+ */
 namespace Itb\Controller;
 
 use Itb\Model\Student;
-
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class MainController
+ * @package Itb\Controller
+ */
 class MainController
 {
     /**
-     * render the days page template
+     * function open the classes twig fle from a selection on the navigation page
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
      */
     public function classesAction(Request $request, Application $app)
     {
@@ -21,7 +30,10 @@ class MainController
     }
 
     /**
-     * render the member login page template
+     * function to open the members page from the selection on the nav bar
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
      */
     public function membersAction(Request $request, Application $app)
     {
@@ -33,7 +45,10 @@ class MainController
     }
 
     /**
-     * render the Index page template
+     * function to load the index page if the index is selected
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
      */
     public function indexAction(Request $request, Application $app)
     {
@@ -44,6 +59,12 @@ class MainController
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 
+    /**
+     * function to open admin page from the selection of the navigation bar
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function adminAction(Request $request, Application $app)
     {
         //$studentRepository = new StudentRepository();
@@ -56,7 +77,4 @@ class MainController
         $templateName = 'admin';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
-
-
-
 }

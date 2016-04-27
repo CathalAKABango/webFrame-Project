@@ -1,9 +1,17 @@
 <?php
-namespace Itb\Model;
+/**
+ * class to run student
+ */
+namespace Itb\model;
+
 use Mattsmithdev\PdoCrud\DatabaseTable;
 use Mattsmithdev\PdoCrud\DatabaseManager;
 
-
+/**
+ * class for doing some functions on the student
+ * Class Student
+ * @package Itb\model
+ */
 class Student extends DatabaseTable
 {
     /**
@@ -115,7 +123,8 @@ class Student extends DatabaseTable
         return $this->password;
     }
 
-    /**function to set the date joined
+    /**
+     * function to set the date joined
      * @param $dateJoined
      */
     public function setDateJoined($dateJoined)
@@ -150,12 +159,10 @@ class Student extends DatabaseTable
      */
     public static function canFindMatchingUsernameAndPassword($username, $password)
     {
-
         $user = Student::getOneByUsername($username);
 
         // if no record has this username, return FALSE
-        if(null == $user){
-
+        if (null == $user) {
             return false;
         }
 

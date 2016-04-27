@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: cathal
- * Date: 01/04/2016
- * Time: 09:22
+ *
+ * administrator cntroller
  */
 
 namespace Itb\Controller;
@@ -12,14 +10,22 @@ use Itb\Model\Student;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class AdminController
+ * @package Itb\Controller
+ */
 class AdminController
 {
 
-
+    /**
+     * function to delete a user
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deleteUserAction(Request $request, Application $app, $id)
     {
-
         $student = Student::delete($id);
 
         $argsArray = [
@@ -28,20 +34,33 @@ class AdminController
         $templateName = '404';
 
 
-        if (null != $student){
+        if (null != $student) {
             return $app->redirect('/admin');
         }
 
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
+
+    /**
+     * function to add a user
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function addUserAction(Request $request, Application $app)
     {
         {
             $templateName = 'newStudentForm';
             return $app['twig']->render($templateName . '.html.twig', []);
         }
-
     }
+
+    /**
+     * function to create a new student
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function createNewStudentAction(Request $request, Application $app)
     {
         $username =$request->get('username');
@@ -60,36 +79,42 @@ class AdminController
         $student->setPassword($password);
         $insertSuccess = Student::insert($student);
 
-        if($insertSuccess){
+        if ($insertSuccess) {
             return $app->redirect('/admin');
         } else {
-            //$message = 'error - not able to CREATE item ';
-            //$message .= '<pre>';
-            // capture print_r output as a string
-            // $message .= print_r($student, true);
             $templateName = 'members';
             return $app['twig']->render($templateName . '.html.twig', []);
-
         }
     }
+
+    /**
+     * fuction to update the user by a form action
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return mixed
+     */
     public function updateUserFormAction(Request $request, Application $app, $id)
     {
-
-            $student = Student::getOneById($id);
-
+        $student = Student::getOneById($id);
 
 
-                $argsArray = [
+
+        $argsArray = [
                 'student' => $student,
             ];
 
-            $templateName = 'updateform';
-            return $app['twig']->render($templateName . '.html.twig', $argsArray);
-
-
-
+        $templateName = 'updateform';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 
+    /**
+     * function to update a student from a form action
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function updateStudentAction(Request $request, Application $app, $id)
     {
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
@@ -107,8 +132,8 @@ class AdminController
         $student->setPassword($password);
         $updateSuccess = Student::update($student);
 
-        if($updateSuccess){
-           return $app->redirect('/admin');
+        if ($updateSuccess) {
+            return $app->redirect('/admin');
         } else {
             //$message = 'error - not able to CREATE item ';
             //$message .= '<pre>';
@@ -116,9 +141,6 @@ class AdminController
             // $message .= print_r($student, true);
             $templateName = 'members';
             return $app['twig']->render($templateName . '.html.twig', []);
-
         }
     }
-
-
 }

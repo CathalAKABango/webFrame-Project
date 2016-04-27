@@ -1,0 +1,27 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: cathal
+ * Date: 27/04/2016
+ * Time: 16:59
+ */
+
+namespace Itb\Test;
+
+use Itb\Model\Student;
+
+class testStudent
+{
+    public function testCanGetId()
+    {
+        // Arrange
+        $qm = new Student();
+        $expectedResult = 0;
+
+        // Act
+        $result = $qm->getId();
+
+        // Assert
+        $this->assertEquals($expectedResult, $result);
+    }
+}
