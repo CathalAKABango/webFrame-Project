@@ -20,7 +20,8 @@ $app->post('/createNewModule', 'Itb\Controller\AdminController::createNewStudent
 $app->get('/updateUser/{id}', 'Itb\Controller\AdminController::updateUserFormAction');
 $app->post('/updateStudent/{id}', 'Itb\Controller\AdminController::updateStudentAction');
 
-//$app->post('/login', \Itb\Utility::controller('Itb', 'user/processLogin'));
+$app->post('/login','Itb\Controller\UserController::processLoginAction');
+$app->post('/processLogin','Itb\Controller\UserController::loginSuccessAction');
 //$app->get('/processLogin', \Itb\Utility::controller('Itb', 'user/loginSuccess'));
 
 $app['debug'] =true;

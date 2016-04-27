@@ -1,98 +1,190 @@
 <?php
 namespace Itb\Model;
 use Mattsmithdev\PdoCrud\DatabaseTable;
+use Mattsmithdev\PdoCrud\DatabaseManager;
 
 
 class Student extends DatabaseTable
 {
     /**
-     * the objects unique ID
-     * @var int
+     * declaring the variable id
+     * @var $id
      */
     private $id;
 
     /**
-     * @var string $title
+     * declarng the vriable username
+     * @var string $username
      */
     private $username;
 
 
     /**
-     * (should become ID of separate CATEGORY class ...)
-     * @var string $category
+     * declaring the lastn grade variable
+     * @var string $lastGrade
      */
     private $lastGrade;
 
     /**
-     * @var float
+     * declaring the variable for the currentGrade
+     * @var currentGrade
      */
     private $currentGrade;
 
     /**
-     * integer value from 0 .. 100
-     * @var integer
+     * declaring password variable
+     * @var password
      */
     private $password;
 
     /**
-     * @var integer
+     * declaring date joined variable
+     * @var $dateJoined
      */
     private $dateJoined;
 
-
     /**
-     * @return int
+     * funtion to get the id
+     * @return int id
      */
     public function getId()
     {
         return $this->id;
     }
+
+    /**
+     * funtion to set the username
+     * @param $username
+     */
     public function setUsername($username)
     {
         $this->username = $username;
     }
 
-
+    /**
+     * function to get the usernamme
+     * @return string
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
+    /**
+     * funtion to set the lastgrade
+     * @param $lastGrade
+     */
     public function setLastGrade($lastGrade)
     {
         $this->lastGrade = $lastGrade;
     }
 
+    /**
+     * function to get the last grade
+     * @return string
+     */
     public function getLastGrade()
     {
         return $this->lastGrade;
     }
 
+    /**
+     * funtion to get the current grade
+     * @return currentGrade
+     */
     public function getCurrentGrade()
     {
         return $this->currentGrade;
     }
+
+    /**
+     * funtion to set the current grade
+     * @param $currentGrade
+     */
     public function setCurrentGrade($currentGrade)
     {
         $this->currentGrade = $currentGrade;
     }
 
+    /**
+     * function to get the password
+     * @return password
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
+    /**function to set the date joined
+     * @param $dateJoined
+     */
     public function setDateJoined($dateJoined)
     {
         $this->dateJoined = $dateJoined;
     }
+
+    /**
+     * function to get the date joined
+     * @return mixed
+     */
     public function getDateJoined()
     {
         return $this->dateJoined;
+    }
+    /**
+     * hash the password before storing ...
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $this->password = $hashedPassword;
+    }
+
+    /**
+     * function to find the username and password
+     * @param $username
+     * @param $password
+     * @return bool
+     */
+    public static function canFindMatchingUsernameAndPassword($username, $password)
+    {
+
+        $user = Student::getOneByUsername($username);
+
+        // if no record has this username, return FALSE
+        if(null == $user){
+
+            return false;
+        }
+
+        // hashed correct password
+        $hashedStoredPassword = $user->getPassword();
+
+        return password_verify($password, $hashedStoredPassword);
+    }
+
+    /**
+     * function to get a single user by username
+     * @param $username
+     * @return mixed|null
+     */
+    public static function getOneByUsername($username)
+    {
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+        $sql = 'SELECT * FROM students WHERE username=:username';
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':username', $username, \PDO::PARAM_STR);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, __CLASS__);
+        $statement->execute();
+
+        if ($object = $statement->fetch()) {
+            return $object;
+        } else {
+            return null;
+        }
     }
 }

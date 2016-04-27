@@ -12,22 +12,22 @@
 
 
         <h2>Username</h2>
-        <p><input type="text" name="username" placeholder="{{ student.userName }}"></p>
+        <p><input type="text" name="username" value="{{ student.userName }}"></p>
         <h2>Password</h2>
         <p>
-            <input type="text" name="password" placeholder="{{ student.password }}">
+            <input type="text" name="password" value="{{ student.password }}">
         </p>
         <h2>last Grade</h2>
         <p>
-            <input type="text" name="lastGrade" placeholder="{{ student.lastGrade }}">
+            <input type="text" name="lastGrade" value="{{ student.lastGrade }}">
         </p>
         <h2>Current Grade</h2>
         <p>
-            <input type="text" name="currentGrade" placeholder="{{ student.currentGrade }}">
+            <input type="text" name="currentGrade" value="{{ student.currentGrade }}">
         </p>
         <h2>Date Joined</h2>
         <p>
-            <input type="date" name="dateJoined" placeholder="{{ student.dateJoined }}">
+            <input type="date" name="dateJoined" value="{{ student.dateJoined }}">
         </p>
 
         <input type="submit" value="Update">

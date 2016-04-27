@@ -12,17 +12,7 @@ use Itb\Model\Student;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Class AdminController
- *
- * simple authentication using Silex session object
- * $app['session']->set('isAuthenticated', false);
- *
- * but the propert way to do it:
- * https://gist.github.com/brtriver/1740012
- *
- * @package Hdip\Controller
- */
+
 class AdminController
 {
 
@@ -37,13 +27,9 @@ class AdminController
         ];
         $templateName = '404';
 
-        // if book WAS found, then show it
-        if (null != $student){
-            $argsArray = [
-                'student' => $student
-            ];
 
-            $templateName = 'registrationSuccsess';
+        if (null != $student){
+            return $app->redirect('/admin');
         }
 
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
@@ -58,11 +44,13 @@ class AdminController
     }
     public function createNewStudentAction(Request $request, Application $app)
     {
-        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-        $lastGrade = filter_input(INPUT_POST, 'lastGrade', FILTER_SANITIZE_STRING);
-        $dateJoined = filter_input(INPUT_POST, 'dateJoined', FILTER_SANITIZE_STRING);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-        $currentGrade = filter_input(INPUT_POST, 'currentGrade', FILTER_SANITIZE_STRING);
+        $username =$request->get('username');
+        $password =$request->get('password');
+
+        $lastGrade =$request->get('lastGrade');
+        $dateJoined =$request->get('dateJoined');
+        $currentGrade =$request->get('currentGrade');
+
 
         $student= new Student();
         $student->setUsername($username);
