@@ -6,8 +6,16 @@ footer {
     border-top: 0.1rem red solid;
     padding: 1.5rem;
     text-align: center;
-    background-color: lightblue;
+    background-color: #ffc907;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
 }
 table, th, td {
     border: 1px solid black;
+}
+#headertext {
+    text-align: center;
+    font-family: Algerian;
+    color: #2c0960;
 }

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Martial Arts Club {% block title %}{% endblock %}</title>
+    <style>
+        @import "/../css/style.css";
+        @import "/../css/nav.css";
+    </style>
+</head>
+<body>
+{% block main %}
+<h2>Welocome to your personal page</h2>
+
+
+
+    <p>
+        you can see all details on our records of your history with the club <b>{{ user }}</b>
+    </p>
+
+    <table>
+        <tr>
+            <th> ID </th>
+            <th> Name </th>
+            <th> Last Grade </th>
+            <th> Current Grade </th>
+            <th> Date Joined </th>
+
+
+
+        </tr>
+
+        {#{% for user in students %}#}
+            <tr>
+                <td> {{ students.id }}</td>
+                <td>{{ students.username }}</td>
+                <td>{{ students.lastGrade }}</td>
+                <td>{{ students.currentGrade }}</td>
+
+                <td>{{ students.dateJoined }}</td>
+
+            </tr>
+        {#{% endfor %}#}
+
+    </table>
+
+<table>
+    <tr>
+        <th> ID </th>
+        <th> Date and Time </th>
+        <th> Name</th>
+
+
+
+
+    </tr>
+
+    {% for attendences in attendendee %}
+    <tr>
+        <td> {{ attendences.id }}</td>
+        <td>{{ attendences.date }}</td>
+
+        <td>{{ attendences.username }}</td>
+
+
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+<p>
+    <a href="/logout">Logout</a>
+</p>
+
+
+
+{% endblock %}

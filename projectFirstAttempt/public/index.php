@@ -11,6 +11,7 @@ $app->get('/index', 'Itb\Controller\MainController::indexAction');
 $app->get('/members', 'Itb\Controller\MainController::membersAction');
 $app->get('/classes', 'Itb\Controller\MainController::classesAction');
 $app->get('/admin', 'Itb\Controller\MainController::adminAction');
+$app->get('/logout', 'Itb\Controller\UserController::logoutAction');
 
 
 $app->get('/addUser', 'Itb\Controller\AdminController::addUserAction');
@@ -22,7 +23,9 @@ $app->post('/updateStudent/{id}', 'Itb\Controller\AdminController::updateStudent
 
 $app->post('/login', 'Itb\Controller\UserController::processLoginAction');
 $app->post('/processLogin', 'Itb\Controller\UserController::loginSuccessAction');
-//$app->get('/processLogin', \Itb\Utility::controller('Itb', 'user/loginSuccess'));
+$app->post('/lognSuccessAction', 'Itb\Controller\UserController::registertimeLogin');
+
+//$app->get('/processLogin', \Itb\Utility::controller('Itb', 'user/stidentP'));
 
 $app['debug'] =true;
 $app->run();

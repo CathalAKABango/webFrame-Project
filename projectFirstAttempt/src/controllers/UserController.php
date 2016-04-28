@@ -5,10 +5,12 @@
 
 namespace Itb\Controller;
 
+use Itb\model\attendence;
 use Itb\Model\Student;
 use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Class UserController
@@ -31,16 +33,34 @@ class UserController extends DatabaseManager
         $username =$request->get('username');
         $password =$request->get('password');
 
-
         // search for user with username in repository
-        $isLoggedIn = Student::canFindMatchingUsernameAndPassword($username, $password);
-
+        $isLoggedIn = UserController::canFindMatchingUsernameAndPassword($username, $password);
+//       $timestamp =  UserController::registertimeLogin();
 
         $argsArray = ['user' => $username];
         // action depending on login success
         if ($isLoggedIn) {
-            $templateName = 'loginSuccess';
+            $students = student::getOneByUsername($username);
+
+
+            $attendee = new attendence();
+            $attendee->setUsername($username);
+
+            $insertSuccess = attendence::insert($attendee);
+
+            $attendences = attendence::getAll();
+            //$attendences = attendence::getOneByUsername($username);
+            $argsArray = [
+                'students' => $students,
+                'user' => $username,
+                'attendendee' => $attendences,
+            ];
+
+
+            $templateName = 'studentPersonalPage';
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
+
+
         } else {
             $message = 'bad username or password, please try again';
             $argsArray = [
@@ -50,4 +70,49 @@ class UserController extends DatabaseManager
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
         }
     }
+    /**
+     * function to find the username and password
+     * @param $username
+     * @param $password
+     * @return bool
+     */
+    public static function canFindMatchingUsernameAndPassword($username, $password)
+    {
+        $user = Student::getOneByUsername($username);
+
+        // if no record has this username, return FALSE
+        if (null == $user) {
+            return false;
+        }
+
+        // hashed correct password
+        $hashedStoredPassword = $user->getPassword();
+
+        return password_verify($password, $hashedStoredPassword);
+    }
+
+    /**
+     * function to logout
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
+    public function logoutAction(Request $request, Application $app)
+    {
+        // remove 'user' element from SESSION array
+//        unset($_SESSION['user']);
+//        unset($_SESSION['role']);
+
+        $argsArray = [
+//            'user' => ''
+        ];
+
+        $templateName = 'index';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+
+
+        // redirect to index action
+
+    }
+
 }

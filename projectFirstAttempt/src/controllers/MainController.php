@@ -73,7 +73,8 @@ class MainController
         $argsArray = [
             'students' => $students,
         ];
-
+//        var_dump($argsArray);
+//        die();
         $templateName = 'admin';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
