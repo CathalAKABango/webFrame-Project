@@ -35,11 +35,21 @@ class UserController extends DatabaseManager
 
         // search for user with username in repository
         $isLoggedIn = UserController::canFindMatchingUsernameAndPassword($username, $password);
-//       $timestamp =  UserController::registertimeLogin();
 
         $argsArray = ['user' => $username];
-        // action depending on login success
+
         if ($isLoggedIn) {
+
+            if($username == "admin")
+            {
+                $students = student::getAll();
+
+                $argsArray = [
+                    'students' => $students,
+                ];
+                $templateName = 'admin';
+                return $app['twig']->render($templateName . '.html.twig', $argsArray);
+            }
             $students = student::getOneByUsername($username);
 
 
@@ -48,8 +58,7 @@ class UserController extends DatabaseManager
 
             $insertSuccess = attendence::insert($attendee);
 
-            $attendences = attendence::getAll();
-            //$attendences = attendence::getOneByUsername($username);
+            $attendences = attendence::searchByColumn('username', $username);
             $argsArray = [
                 'students' => $students,
                 'user' => $username,
@@ -89,6 +98,8 @@ class UserController extends DatabaseManager
         $hashedStoredPassword = $user->getPassword();
 
         return password_verify($password, $hashedStoredPassword);
+
+
     }
 
     /**

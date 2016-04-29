@@ -11,7 +11,7 @@
 <body>
 <section>
     {% block head %}
-  <h1 id="headertext">Welcome to advanced school of martial arts</h1>
+  <p id="headertext">Welcome to advanced school of martial arts</p>
 
     {% endblock %}
 
@@ -30,9 +30,9 @@
         <li>
             <a href="classes" class="{% block daysNavStyle %}{% endblock %}">Weekly Classes</a>
         </li>
-        <li>
-            <a href="admin" class="{% block listLinkStyle %}{% endblock %}">Admin</a>
-        </li>
+        {#<li>#}
+            {#<a href="admin" class="{% block listLinkStyle %}{% endblock %}">Admin</a>#}
+        {#</li>#}
     </ul>
 </nav>
 

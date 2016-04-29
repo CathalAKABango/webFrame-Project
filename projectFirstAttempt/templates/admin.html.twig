@@ -1,14 +1,16 @@
-{% extends '_base.html.twig' %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Martial Arts Club {% block title %}{% endblock %}</title>
+    <style>
+        @import "/../css/style.css";
+        @import "/../css/nav.css";
+    </style>
+</head>
+<body>
 
-{# ------------------------------------------------- #}
-{% block pageTitle %}Database{% endblock %}
-
-{# ------------------------------------------------- #}
-{% block listLinkStyle %}current_page{% endblock %}
-
-{# ------------------------------------------------- #}
 {% block main %}
-
 <!-- start table for displaying DVD details -->
 <h2>welcome to the admin page</h2>
 
@@ -51,6 +53,10 @@
 
     <p>
         TO add a new student to the system please click the link <a href="/addUser"><input type="button" value="Add User"></a>
+    </p>
+
+    <p>
+        <a href="/logout">Logout</a>
     </p>
 
 {% endblock %}

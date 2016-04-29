@@ -28,8 +28,29 @@
             Password:
             <input type="password" name="password">
         </p>
+        <p>
+            Class Code:
+            <input type="number" name="classcode">
+        </p>
+
         <input type="submit" value="login">
     </form>
+
+    <h2>Your attendance over the past while</h2>
+    <table>
+        <tr>
+            <th> Class Codes </th>
+            <th> Description </th>
+        </tr>
+
+        {% for technique in technique %}
+            <tr>
+                <td> {{ technique.id }}</td>
+                <td>{{ technique.date }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
 
 
 {% endblock %}

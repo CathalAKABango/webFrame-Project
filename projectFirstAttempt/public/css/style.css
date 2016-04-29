@@ -15,7 +15,11 @@ table, th, td {
     border: 1px solid black;
 }
 #headertext {
+    font-size: 3em;
     text-align: center;
     font-family: Algerian;
     color: #2c0960;
+}
+#mainPage{
+    text-align: center;
 }
