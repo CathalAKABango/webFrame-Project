@@ -5,6 +5,7 @@
 namespace Itb\Controller;
 
 use Itb\Model\Student;
+use Itb\Model\technique;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,8 +38,12 @@ class MainController
      */
     public function membersAction(Request $request, Application $app)
     {
-        $argsArray = [];
+        $techniques = technique::getAll();
 
+        $argsArray = [
+            'techniques' => $techniques,
+
+        ];
 
         $templateName = 'members';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
@@ -73,7 +78,8 @@ class MainController
         $argsArray = [
             'students' => $students,
         ];
-
+//        var_dump($argsArray);
+//        die();
         $templateName = 'admin';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }

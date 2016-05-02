@@ -12,10 +12,10 @@
 
 {% block main %}
 <!-- start table for displaying DVD details -->
-<h2>welcome to the admin page</h2>
+<h2>Welcome to the admin page</h2>
 
     <p>
-        be careful of your actions in this page
+        <div id="beware"> <h2><b>be careful of your actions in this page they can not be reversed</b></div></h2>
     </p>
 
 <table>
@@ -56,7 +56,35 @@
     </p>
 
     <p>
-        <a href="/logout">Logout</a>
+        The latest user activity in the club
+    </p>
+    <table>
+        <tr>
+            <th> ID </th>
+            <th> Date and Time </th>
+            <th> Name</th>
+
+
+
+
+        </tr>
+
+        {% for attendences in attendendee %}
+            <tr>
+                <td> {{ attendences.id }}</td>
+                <td>{{ attendences.date }}</td>
+
+                <td>{{ attendences.username }}</td>
+
+
+
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    <p>
+        <a href="/logout"><input type="button" value="Logout"></a>
     </p>
 
 {% endblock %}

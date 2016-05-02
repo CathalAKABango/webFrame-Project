@@ -37,16 +37,16 @@
     </form>
 
     <h2>Your attendance over the past while</h2>
-    <table>
+    <table id="classesTable">
         <tr>
             <th> Class Codes </th>
             <th> Description </th>
         </tr>
 
-        {% for technique in technique %}
+        {% for techniques in techniques %}
             <tr>
-                <td> {{ technique.id }}</td>
-                <td>{{ technique.date }}</td>
+                <td> {{ techniques.id }}</td>
+                <td>{{ techniques.description }}</td>
             </tr>
         {% endfor %}
 

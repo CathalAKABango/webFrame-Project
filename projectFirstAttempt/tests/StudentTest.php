@@ -114,21 +114,21 @@ class StudentTest extends \PHPUnit_Framework_TestCase
         // Assert
         $this->assertEquals($expectedResult, $result);
     }
-        public function testSetpassword()
-        {
-            // Arrange
+    public function testSetpassword()
+    {
+        // Arrange
             $st = new Student();
-            $password = "password";
-            $expectedResult = $password;
+        $password = "password";
+        $expectedResult = $password;
 
-            $st->setPassword( $expectedResult);
+        $st->setPassword($expectedResult);
 
             // Act
             $result = $st->getPassword();
-            $bool = password_verify("password", $result);
+        $bool = password_verify("password", $result);
             // Assert
             $this->assertTrue($bool);
-        }
+    }
     public function testSetcurrGrade()
     {
         // Arrange
@@ -171,5 +171,4 @@ class StudentTest extends \PHPUnit_Framework_TestCase
         // Assert
         $this->assertEquals($expectedResult, $result);
     }
-
 }

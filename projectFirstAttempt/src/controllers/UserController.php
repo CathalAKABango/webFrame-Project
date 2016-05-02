@@ -11,7 +11,6 @@ use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
  * Class UserController
  * @package Itb\Controller
@@ -39,13 +38,13 @@ class UserController extends DatabaseManager
         $argsArray = ['user' => $username];
 
         if ($isLoggedIn) {
-
-            if($username == "admin")
-            {
+            if ($username == "admin") {
                 $students = student::getAll();
+                $attendences = attendence::getAll();
 
                 $argsArray = [
                     'students' => $students,
+                    'attendendee' => $attendences,
                 ];
                 $templateName = 'admin';
                 return $app['twig']->render($templateName . '.html.twig', $argsArray);
@@ -68,15 +67,14 @@ class UserController extends DatabaseManager
 
             $templateName = 'studentPersonalPage';
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
-
-
         } else {
-            $message = 'bad username or password, please try again';
-            $argsArray = [
-                'message' => $message
-            ];
-            $templateName = 'members';
-            return $app['twig']->render($templateName . '.html.twig', $argsArray);
+            //            $message = 'bad username or password, please try again';
+//            $argsArray = [
+//                'message' => $message
+//            ];
+//            $templateName = 'members';
+//            return $app['twig']->render($templateName . '.html.twig', $argsArray);
+            return $app->redirect('/members');
         }
     }
     /**
@@ -98,8 +96,6 @@ class UserController extends DatabaseManager
         $hashedStoredPassword = $user->getPassword();
 
         return password_verify($password, $hashedStoredPassword);
-
-
     }
 
     /**
@@ -123,7 +119,5 @@ class UserController extends DatabaseManager
 
 
         // redirect to index action
-
     }
-
 }

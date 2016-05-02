@@ -1,1 +1,16 @@
 TAP version 13
+ok 1 - ItbTest\StudentTest::testCanGetId
+ok 2 - ItbTest\StudentTest::testCanGetUserName
+ok 3 - ItbTest\StudentTest::testCanGetpassword
+ok 4 - ItbTest\StudentTest::testCanGetcurrentGrade
+ok 5 - ItbTest\StudentTest::testCanGetlastgrade
+ok 6 - ItbTest\StudentTest::testCanGetdateJoined
+ok 7 - ItbTest\StudentTest::testCanGetonebynousername
+ok 8 - ItbTest\StudentTest::testCanGetonebyusername
+ok 9 - ItbTest\StudentTest::testSetusername
+ok 10 - ItbTest\StudentTest::testSetpassword
+ok 11 - ItbTest\StudentTest::testSetcurrGrade
+ok 12 - ItbTest\StudentTest::testSetLastGrade
+ok 13 - ItbTest\StudentTest::testSetDateJoined
+ok 14 - ItbTest\attendenceTest::testCanGetId
+1..14

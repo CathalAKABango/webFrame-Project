@@ -151,26 +151,6 @@ class Student extends DatabaseTable
         $this->password = $hashedPassword;
     }
 
-    /**
-     * function to find the username and password
-     * @param $username
-     * @param $password
-     * @return bool
-     */
-    public static function canFindMatchingUsernameAndPassword($username, $password)
-    {
-        $user = Student::getOneByUsername($username);
-
-        // if no record has this username, return FALSE
-        if (null == $user) {
-            return false;
-        }
-
-        // hashed correct password
-        $hashedStoredPassword = $user->getPassword();
-
-        return password_verify($password, $hashedStoredPassword);
-    }
 
     /**
      * function to get a single user by username

@@ -117,11 +117,11 @@ class AdminController
      */
     public function updateStudentAction(Request $request, Application $app, $id)
     {
-        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-        $lastGrade = filter_input(INPUT_POST, 'lastGrade', FILTER_SANITIZE_STRING);
-        $dateJoined = filter_input(INPUT_POST, 'dateJoined', FILTER_SANITIZE_STRING);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-        $currentGrade = filter_input(INPUT_POST, 'currentGrade', FILTER_SANITIZE_STRING);
+        $username = $request->get('username');
+        $lastGrade = $request->get('lastGrade');
+        $dateJoined = $request->get('dateJoined');
+        $password = $request->get('password');
+        $currentGrade = $request->get('currentGrade');
 
         $student= student::getOneById($id);
 

@@ -117,7 +117,6 @@ class AdminController
      */
     public function updateStudentAction(Request $request, Application $app, $id)
     {
-
         $username = $request->get('username');
         $lastGrade = $request->get('lastGrade');
         $dateJoined = $request->get('dateJoined');
